@@ -1,0 +1,69 @@
+Learning Material for the course: https://github.com/iamshaunjp/complete-sass-tutorial
+install extension in vscode: live sass compiler
+install extention in vscode: live server
+npm install: to create the package.json files
+npm install gulp gulp-sass sass --save-dev
+
+** Create variables using $ variable_name : color to prevent hardcoding colors in your styling **
+
+** Files starting with an underscore will not be compiled into css file after the scss file specified in the gulp file is "*.scss" **
+
+** Always create a folder to store all the scss files inside to create a proper folder structure. Then update the gulp file path in the gulpfile.js to "folderName/**/*.scss" **
+
+** General importing order for the index.scss file: 1. Variables and Functions 2. Base and Layout 3. Colors  4. Components  5. Utilities (margins, padding, opacity, etc) **
+
+** To use division and other mathematical functions in scss import the @use "sass:math" much  like you would use it in react or something **
+
+
+** use @debug "something" or @debug math.div(10,3) to output the results in the terminal. Useful for actual debugging. **
+
+** creating a color palette: //Color Palette
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "error": $error,
+    "info": $info,
+    "blue": #1919e6,
+    "red": #e61919,
+    "yellow": #e6e619,
+    "green": #19e635,
+    "orange": #ffa600,
+    "purple": #9900ff,
+    "gray": #808080,
+    "black": black,
+    "white": white,
+); **
+
+** use an each loop to make the color classes for us for the text and the background color:
+@each $key, $val in $colors {
+    .text-#{$key} {
+        color: $val;
+    }
+
+    .bg-#{$key} {
+        background-color: $val;
+    }
+} **
+
+** To make variations of the colors, scss has a mix functionality that allows to mix colors to get different shades of it. Here I am making light variations of the color palette:|
+//light variations
+    @for $i from 1 through 9 {
+        .text-#{$key}-light-#{$i} {
+            color: mix(white, $val, $i * 10);
+        }
+
+        .text-#{$key}-light-#{$i} {
+            background-color: mix(white, $val, $i * 10);
+        }
+    }
+
+Similar to using a for loop to iterate using the existing variables and just increasing the strength each time it iterates which will be 9 times **
+
+** Make a hover palette for the text so that when you hover over the text that it changes to a different color using a pseudo-selector:
+.text-hover-#{$key}-light-#{$i} {
+                &:hover {
+                    color: mix(white, $val, $i * 10);
+                }
+            } **
+
+** Mixin allows you to store common styling properties and then just include them where you need them using the @include mixin_name() to make your code neater and more readable **
