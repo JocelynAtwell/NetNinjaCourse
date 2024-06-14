@@ -1,0 +1,6 @@
+//Any changes I want to override should be placed above where I am importing
+//Make that that whatever I am changing has the !default next to it to allow to override
+$primary: indigo;
+
+@import "shinobi";
+ 
